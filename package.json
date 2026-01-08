@@ -1,0 +1,28 @@
+{
+  "name": "horloge-temporelle",
+  "version": "2.0.0",
+  "description": "Horloge avec progression temporelle",
+  "main": "main.js",
+  "author": "naelrp78fr",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win --x64"
+  },
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.1"
+  },
+  "build": {
+    "appId": "com.horloge.temporelle",
+    "productName": "Horloge Temporelle",
+    "win": {
+      "target": ["nsis", "portable"]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true
+    }
+  }
+}
