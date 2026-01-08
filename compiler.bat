@@ -1,29 +1,39 @@
 @echo off
 chcp 65001 >nul
+cls
 echo ==========================================
-echo  Compilation Horloge Temporelle
+echo   COMPILATION - Horloge Temporelle
 echo ==========================================
 echo.
-echo Installation des dépendances...
-call npm install
-if errorlevel 1 (
-    echo ERREUR lors de l'installation !
-    pause
-    exit /b 1
+
+if not exist node_modules (
+    echo Installation des dépendances...
+    call npm install
+    if errorlevel 1 (
+        echo.
+        echo ERREUR: Installation échouée !
+        pause
+        exit /b 1
+    )
 )
+
 echo.
-echo Compilation de l'executable...
+echo Compilation en cours...
 call npm run build
+
 if errorlevel 1 (
-    echo ERREUR lors de la compilation !
+    echo.
+    echo ERREUR: Compilation échouée !
     pause
     exit /b 1
 )
+
 echo.
 echo ==========================================
-echo  BUILD TERMINE !
+echo   BUILD TERMINE !
 echo ==========================================
 echo.
-echo Fichiers dans le dossier "dist"
+echo Fichiers .exe dans le dossier "dist"
+echo Pour lancer l'application, utilisez "lancer.bat"
 echo.
 pause

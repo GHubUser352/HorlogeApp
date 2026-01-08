@@ -4,17 +4,23 @@ let mainWindow;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 1400,
-    height: 900,
+    width: 1600,
+    height: 1000,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false
     },
     autoHideMenuBar: true,
-    backgroundColor: '#1a202c'
+    backgroundColor: '#020617',
+    show: false  // Ne montre pas avant d'être prêt
   });
 
   mainWindow.loadFile('index.html');
+
+  // Affiche la fenêtre quand prête (évite le flash blanc)
+  mainWindow.once('ready-to-show', () => {
+    mainWindow.show();
+  });
 
   ipcMain.on('set-always-on-top', (event, flag) => {
     mainWindow.setAlwaysOnTop(flag);
